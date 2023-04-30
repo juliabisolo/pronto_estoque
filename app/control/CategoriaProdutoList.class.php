@@ -23,7 +23,7 @@ class CategoriaProdutoList extends TPage
         // creates the form
         $this->form = new BootstrapFormBuilder('form_search_CategoriaProduto');
         $this->form->setFieldSizes('100%');
-        $this->form->setFormTitle('CATEGORIAS PRODUTO');
+        $this->form->setFormTitle('CATEGORIAS DE PRODUTOS');
 
         // create the form fields
         $id = new TEntry('id');

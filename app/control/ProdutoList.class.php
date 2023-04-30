@@ -19,7 +19,7 @@ class ProdutoList extends TPage
     public function __construct()
     {
         parent::__construct();
-        
+
         // creates the items form and add a table inside
         $this->form = new BootstrapFormBuilder('form_search_produto');
         $this->form->setFieldSizes('100%');
@@ -54,7 +54,7 @@ class ProdutoList extends TPage
         // add the search form actions
         $this->form->addAction(_t('Find'), new TAction(array($this, 'onSearch')), 'fa:search');
         $this->form->addAction(_t('New'),  new TAction(array('ProdutoForm', 'onEdit')), 'fa:plus-circle green');
-        
+
         // creates a Datagrid
         $this->datagrid = new BootstrapDatagridWrapper(new TDataGrid);
         $this->datagrid->disableDefaultClick();
@@ -234,9 +234,9 @@ class ProdutoList extends TPage
         // keep the search data in the session
         TSession::setValue('Produto_filter_data', $data);
         
-        $param=array();
-        $param['offset']    =0;
-        $param['first_page']=1;
+        $param = array();
+        $param['offset']     = 0;
+        $param['first_page'] = 1;
         $this->onReload($param);
     }
     
@@ -247,7 +247,7 @@ class ProdutoList extends TPage
     {
         try
         {
-            // open a transaction with database 'agenda_julia'
+            // open a transaction with database 'pronto_estoque'
             TTransaction::open('tem_estoque');
             
             // creates a repository for Pessoa
@@ -264,6 +264,7 @@ class ProdutoList extends TPage
                 $param['order'] = 'nome';
                 $param['direction'] = 'asc';
             }
+
             $criteria->setProperties($param); // order, offset
             $criteria->setProperty('limit', $limit);
 
@@ -380,7 +381,8 @@ class ProdutoList extends TPage
     public function show()
     {
         // check if the datagrid is already loaded
-        if (!$this->loaded AND (!isset($_GET['method']) OR !(in_array($_GET['method'],  array('onReload', 'onSearch')))) )
+        if (!$this->loaded AND (!isset($_GET['method']) OR 
+            !(in_array($_GET['method'],  array('onReload', 'onSearch')))) )
         {
             if (func_num_args() > 0)
             {

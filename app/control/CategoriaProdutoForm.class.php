@@ -22,7 +22,7 @@ class CategoriaProdutoForm extends TPage
         
         // creates the form
         $this->form = new BootstrapFormBuilder('form_CategoriaProduto_form');
-        $this->form->setFormTitle('Categoria Produto');
+        $this->form->setFormTitle('CADASTRO DE CATEGORIA DE PRODUTOS');
         $this->form->setFieldSizes('100%');
         $this->form->setProperty('style', 'margin-bottom:0');
 

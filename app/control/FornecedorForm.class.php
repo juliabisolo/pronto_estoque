@@ -22,7 +22,7 @@ class FornecedorForm extends TPage
         
         // creates the form
         $this->form = new BootstrapFormBuilder('form_Fornecedor_form');
-        $this->form->setFormTitle('Fornecedor');
+        $this->form->setFormTitle('CADASTRO DE FORNECEDOR');
         $this->form->setFieldSizes('100%');
         $this->form->setProperty('style', 'margin-bottom:0');
 

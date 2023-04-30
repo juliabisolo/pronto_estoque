@@ -22,7 +22,7 @@ class ProdutoForm extends TPage
         
         // creates the form
         $this->form = new BootstrapFormBuilder('form_Produto_form');
-        $this->form->setFormTitle('Produto');
+        $this->form->setFormTitle('CADASTRO DE PRODUTO');
         $this->form->setFieldSizes('100%');
         $this->form->setProperty('style', 'margin-bottom:0');
 
