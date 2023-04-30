@@ -41,11 +41,11 @@
         <icon>fas:shopping-basket fa-fw</icon>
         <menu>
             <menuitem label="Novo registro">
-                <action>CategoriaProdutoForm</action>
+                <action>ProdutoForm</action>
                 <icon>fas:plus-square fa-fw</icon>
             </menuitem>
             <menuitem label="Buscar">
-                <action>CategoriaProdutoList</action>
+                <action>ProdutoList</action>
                 <icon>fas:search fa-fw</icon>
             </menuitem>
         </menu>

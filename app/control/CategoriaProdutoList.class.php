@@ -40,7 +40,7 @@ class CategoriaProdutoList extends TPage
         $row->layout = ['col-sm-2', 'col-sm-10'];
 
         $row = $this->form->addFields( [new TLabel('Ativo:'), $ativo] );
-        $row->layout = ['col-sm-3'];
+        $row->layout = ['col-sm-4'];
         
         // keep the form filled during navigation with session data
         $this->form->setData( TSession::getValue('CategoriaProduto_filter_data') );
