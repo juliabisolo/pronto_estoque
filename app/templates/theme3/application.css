@@ -749,7 +749,7 @@ section.content
     padding-right: 10px;
     margin-bottom: 1rem;
     list-style: none;
-    background-color: #e9ecef;
+    background-color: #e3e3e3;
     border-radius: 0.25rem;
     width: 100%;
 }
@@ -767,7 +767,6 @@ nav.navbar {
 {
     background: none;
     overflow: hidden;
-    white-space: normal;
 }
 
 .navbar-custom-menu .nav.navbar-nav li a::after{
@@ -1895,7 +1894,7 @@ ul.dropdown-menu>li>a
 }
 
 .sidebar .treeview li {
-    padding: 3px 0 2px 4px;
+    padding: 2px 2px 2px 2px;
 }
 
 body:not([class*="light"]) .sidebar .sidebar-menu>li>ul>li.active>a

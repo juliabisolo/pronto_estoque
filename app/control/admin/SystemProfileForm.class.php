@@ -86,7 +86,7 @@ class SystemProfileForm extends TPage
             
             $object = $this->form->getData();
             
-            TTransaction::open('permission');
+            TTransaction::open('tem_estoque');
             $user = SystemUser::newFromLogin( TSession::getValue('login') );
             $user->name = $object->name;
             $user->email = $object->email;
