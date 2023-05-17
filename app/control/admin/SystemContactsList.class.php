@@ -24,7 +24,7 @@ class SystemContactsList extends TPage
     {
         parent::__construct();
         
-        $this->setDatabase('permission');
+        $this->setDatabase('tem_estoque');
         $this->setActiveRecord('SystemUser');
         $this->addFilterField('name', 'like', 'name');
         $this->addFilterField('email', 'like', 'email');

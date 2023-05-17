@@ -1,6 +1,6 @@
 {
-  "short_name": "TemEstoque",
-  "name": "TemEstoque",
+  "short_name": "ProntoEstoque",
+  "name": "ProntoEstoque",
   "icons": [
     {
       "src": "app/images/icon.png",

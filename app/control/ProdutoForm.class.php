@@ -253,7 +253,7 @@ class ProdutoForm extends TPage
         return $dateFormatted;
     }
 
-    public function fireEvents( $object )
+    public function fireEvents($object)
     {
         $obj = new stdClass;
         $obj->categoria_produto_id = $object->categoria_produto_id;

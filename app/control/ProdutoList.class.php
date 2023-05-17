@@ -106,9 +106,18 @@ class ProdutoList extends TPage
         $action_delete->setImage('fa:trash-alt red');
         $action_delete->setField('id');
 
+        //create GERAR ETIQUETA action
+        $action_etiqueta = new TDataGridAction(array($this, 'gerarEtiqueta'));
+        $action_etiqueta->setUseButton(TRUE);
+        $action_etiqueta->setButtonClass('btn btn-default');
+        $action_etiqueta->setLabel('Gerar etiqueta');
+        $action_etiqueta->setImage('far:file-pdf green');
+        $action_etiqueta->setField('id');
+
         $action_group = new TDataGridActionGroup('Ações', 'bs:th');        
         $action_group->addAction($action_edit);
         $action_group->addAction($action_delete);
+        $action_group->addAction($action_etiqueta);
 
         $this->datagrid->addActionGroup($action_group);
 
@@ -324,6 +333,27 @@ class ProdutoList extends TPage
             // undo all pending operations
             TTransaction::rollback();
         }
+    }
+
+    public static function gerarEtiqueta($param)
+    {
+        TTransaction::open('tem_estoque');
+
+        $produto = Produto::find($param['key']);
+        $produtos[] = $produto;
+
+        $tipo_etiqueta = TipoEtiqueta::find(1);
+
+        if($tipo_etiqueta->value === 'q')
+        {
+            EtiquetasPDF::gerarQrCode($produtos);
+        }
+        else
+        {
+            EtiquetasPDF::gerarCodigodeBarras($produtos);
+        }
+
+        TTransaction::close();
     }
 
     /**

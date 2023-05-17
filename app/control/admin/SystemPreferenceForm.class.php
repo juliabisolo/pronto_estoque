@@ -21,7 +21,7 @@ class SystemPreferenceForm extends TStandardForm
     {
         parent::__construct();
         
-        $this->setDatabase('permission');
+        $this->setDatabase('tem_estoque');
         $this->setActiveRecord('SystemPreference');
         
         // cria o formulário

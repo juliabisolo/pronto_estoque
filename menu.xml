@@ -34,6 +34,10 @@
                   <icon>fas:cog fa-fw</icon>
                   <action>SystemPreferenceForm#method=onEdit</action>
               </menuitem>
+              <menuitem label='Etiquetas'>
+                  <icon>fas:qrcode fa-fw</icon>
+                  <action>TipoEtiquetaForm#method=onEdit</action>
+              </menuitem>
         </menu>
     </menuitem>
 
