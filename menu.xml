@@ -41,6 +41,11 @@
         </menu>
     </menuitem>
 
+    <menuitem label="Localizar produto">
+        <icon>fas:barcode fa-fw</icon>
+        <action>FormCodeReader</action>
+    </menuitem>
+
     <menuitem label="Produtos">
         <icon>fas:shopping-basket fa-fw</icon>
         <menu>
@@ -83,14 +88,9 @@
         </menu>
     </menuitem>
 
-    <menuitem label="Relatórios">
-        <icon>fas:file fa-fw</icon>
-        <menu>
-            <menuitem label="Relatório de produtos">
-                <action>FornecedorForm</action>
-                <icon>fas:shopping-basket fa-fw</icon>
-            </menuitem>
-        </menu>
+    <menuitem label="Etiquetas em lote">
+        <icon>far:file-pdf fa-fw</icon>
+        <action>ProdutoReport</action>
     </menuitem>
 
     <menuitem label='Logs'>

@@ -154,7 +154,7 @@ Template.onAfterLoad = function(url, data) {
             $('#adianti_right_panel').show('slide',{direction:'right'}, 320);
         }
         
-        $('#adianti_right_panel').css('width', (view_width + (curtain_offset * right_panels)) + 'px');
+        $('#adianti_right_panel').css('width', '500px');
         
         if (curtain_offset > 0) {
             $('#adianti_right_panel').find('[page_name]').each(function(k,v) {
