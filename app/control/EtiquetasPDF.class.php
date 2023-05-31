@@ -105,11 +105,10 @@ class EtiquetasPDF extends TPage
             foreach ($produtos as $produto)
             {
                 $produto->id_pad = str_pad($produto->id, 10, '0', STR_PAD_LEFT);
-                $produto->nome   = substr($produto->nome, 0, 30);
                 $generator->addObject($produto);
             }
             
-            $generator->setBarcodeContent('{id}-{nome}');
+            $generator->setBarcodeContent('{id}');
             $generator->generate();
             $generator->save('app/output/qrcodes.pdf');
             

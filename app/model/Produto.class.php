@@ -12,6 +12,8 @@ class Produto extends TRecord
     /**
      * Constructor method
      */
+
+    use SystemChangeLogTrait;
     public function __construct($id = NULL, $callObjectLoad = TRUE)
     {
         parent::__construct($id, $callObjectLoad);
