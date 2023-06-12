@@ -77,12 +77,12 @@ class AdiantiStringConversion
         }
         else
         {
-            if (utf8_encode(utf8_decode($content)) !== $content ) // NOT UTF
+            if (mb_convert_encoding(mb_convert_encoding($content, 'ISO-8859-1', 'UTF-8'), 'UTF-8') !== $content ) // NOT UTF
             {
-                return utf8_encode($content);
+                return mb_convert_encoding($content, 'UTF-8');
             }
         }
-        
+
         return $content;
     }
     

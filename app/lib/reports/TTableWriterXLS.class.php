@@ -206,9 +206,9 @@ class TTableWriterXLS implements ITableWriter
         }
         
         // se UTF8
-        if (utf8_encode(utf8_decode($content)) == $content )
+        if (mb_convert_encoding(mb_convert_encoding($content, 'ISO-8859-1', 'UTF-8'), 'UTF-8') == $content )
         {
-            $content = utf8_decode($content);
+            $content = mb_convert_encoding($content, 'ISO-8859-1', 'UTF-8');
         }
         
         $this->currentTable-> write($this->rowcounter, $this->colcounter, $content, $format);

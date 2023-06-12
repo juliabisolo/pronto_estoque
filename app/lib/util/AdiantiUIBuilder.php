@@ -955,7 +955,7 @@ class AdiantiUIBuilder extends TPanel
     {
         if (is_scalar($value))
         {
-            $value = utf8_decode($value);
+            $value = mb_convert_encoding($value, 'ISO-8859-1', 'UTF-8');
         }
     }
     

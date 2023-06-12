@@ -182,7 +182,7 @@ class AdiantiBarcodeDocumentGenerator extends AdiantiPDFDesigner
                         }
                         else
                         {
-                            parent::writeHTML(parent::GetX(), parent::GetY(), utf8_decode($label_line));
+                            parent::writeHTML(parent::GetX(), parent::GetY(), mb_convert_encoding($label_line, 'ISO-8859-1', 'UTF-8'));
                             parent::Ln( $lineBreak );
                         }
                     }

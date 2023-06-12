@@ -157,9 +157,9 @@ class TTableWriterPDF implements ITableWriter
         $this->applyStyle($stylename); // aplica o estilo
         $fontsize = $this->styles[$stylename][1]; // obtém a fonte
         
-        if (utf8_encode(utf8_decode($content)) == $content ) // SE UTF8
+        if (mb_convert_encoding(mb_convert_encoding($content, 'ISO-8859-1', 'UTF-8'), 'UTF-8') == $content ) // SE UTF8
         {
-            $content = utf8_decode($content);
+            $content = mb_convert_encoding($content, 'ISO-8859-1', 'UTF-8');
         }
         
         $width = 0;

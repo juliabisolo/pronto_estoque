@@ -197,9 +197,10 @@ class TTableWriterRTF implements ITableWriter
         // obtém a fonte e a cor de preenchimento
         $font      = $this->styles[$stylename]['font'];
         $fillcolor = $this->styles[$stylename]['bgcolor'];
-        if (utf8_encode(utf8_decode($content)) !== $content ) // SE NÃO UTF8
+
+        if (mb_convert_encoding(mb_convert_encoding($content, 'ISO-8859-1', 'UTF-8'), 'UTF-8') !== $content ) // SE NÃO UTF8
         {
-            $content = utf8_encode($content);
+            $content = mb_convert_encoding($content, 'UTF-8');
         }
         
         // escreve o conteúdo na célula utilizando a fonte e alinhamento
