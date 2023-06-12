@@ -17,7 +17,7 @@ class FornecedorForm extends TPage
     {
         parent::__construct();
 
-        $this->setDatabase('tem_estoque');
+        $this->setDatabase('pronto_estoque');
         $this->setActiveRecord('Fornecedor');
         
         // creates the form
@@ -42,8 +42,8 @@ class FornecedorForm extends TPage
         $cnpj = new TEntry('cnpj');
         $filter = new TCriteria;
         $filter->add(new TFilter('estado_id', '<', '0'));
-        $estado_id = new TDBCombo('estado_id', 'tem_estoque', 'Estado', 'id', 'nome', 'nome');
-        $cidade_id = new TDBCombo('cidade_id', 'tem_estoque', 'Cidade', 'id', 'nome', 'nome');
+        $estado_id = new TDBCombo('estado_id', 'pronto_estoque', 'Estado', 'id', 'nome', 'nome');
+        $cidade_id = new TDBCombo('cidade_id', 'pronto_estoque', 'Cidade', 'id', 'nome', 'nome');
 
         $estado_id->enableSearch();
         $cidade_id->enableSearch();
@@ -141,7 +141,7 @@ class FornecedorForm extends TPage
         try
         {
             // open a transaction with database 'samples'
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             $this->form->validate(); // form validation
             
@@ -258,12 +258,12 @@ class FornecedorForm extends TPage
     {
         try
         {
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             if (!empty($param['estado_id']))
             {
                 $criteria = TCriteria::create( ['estado_id' => $param['estado_id'] ] );
                 
-                TDBCombo::reloadFromModel('form_Fornecedor_form', 'cidade_id', 'tem_estoque', 'Cidade', 'id', '{nome}', 'nome', $criteria, TRUE);
+                TDBCombo::reloadFromModel('form_Fornecedor_form', 'cidade_id', 'pronto_estoque', 'Cidade', 'id', '{nome}', 'nome', $criteria, TRUE);
             }
             else
             {

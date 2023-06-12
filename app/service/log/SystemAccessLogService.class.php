@@ -23,7 +23,7 @@ class SystemAccessLogService
         
         if ($open_transaction)
         {
-            TTransaction::open('log');
+            TTransaction::open('pronto_estoque');
         }
         
         $object = new SystemAccessLog;
@@ -56,7 +56,7 @@ class SystemAccessLogService
         
         if ($open_transaction)
         {
-            TTransaction::open('log');
+            TTransaction::open('pronto_estoque');
         }
         
         // get logs by session id
@@ -82,7 +82,7 @@ class SystemAccessLogService
      */
     public static function getStatsByDay()
     {
-        TTransaction::open('log');
+        TTransaction::open('pronto_estoque');
         // get logs by session id
         $logs = SystemAccessLog::where('login_time', '>=', date('Y-m-01'))->where('login_time', '<=', date('Y-m-t'))->load();
         $accesses = array();

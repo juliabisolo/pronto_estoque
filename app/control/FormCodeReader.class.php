@@ -15,7 +15,7 @@ class FormCodeReader extends TPage
     {
         parent::__construct();
 
-        TTransaction::open('tem_estoque');
+        TTransaction::open('pronto_estoque');
 
         $tipo_etiqueta = TipoEtiqueta::find(1);
 
@@ -88,37 +88,40 @@ class FormCodeReader extends TPage
         $this->html = new THtmlRenderer('app/resources/page_sample.html');
 
         //busca último log de movimentação de estoque feita pelo usuário
-        TTransaction::open('log');
+        TTransaction::open('pronto_estoque');
         $criteria = new TCriteria;
         $criteria->add(new TFilter('login', '=', TSession::getValue('login')));
         $criteria->add(new TFilter('class_name', '=', 'FormCodeReader'));
         $criteria->add(new TFilter('columnname', '=', 'quantidade'));
         $criteria->setProperty('order', 'id desc');
         $log = SystemChangeLog::getObjects($criteria);
-        $log = $log[0];
         TTransaction::close();
+        
+        if ($log)
+        {
+            $log = $log[0];
+            //busca nome do produto
+            TTransaction::open('pronto_estoque');
+            $produto = Produto::find($log->pkvalue);
+            TTransaction::close();
 
-        //busca nome do produto
-        TTransaction::open('tem_estoque');
-        $produto = Produto::find($log->pkvalue);
-        TTransaction::close();
-
-        //formatação de data
-        $timestamp = strtotime($log->logdate);
-        $dateFormatted = date("d/m/Y H:i:s", $timestamp);
-        
-        //replaces mensagem última movimentação
-        $replaces = [];
-        $replaces['login']  = $log->login;
-        $replaces['nome']  = $produto->nome;
-        $replaces['valor_antigo'] = $log->oldvalue;
-        $replaces['valor_novo']   = $log->newvalue;
-        $replaces['data']   = $dateFormatted;
-        
-        // replace the main section variables
-        $this->html->enableSection('main', $replaces);
-        
-        $panel->add($this->html);
+            //formatação de data
+            $timestamp = strtotime($log->logdate);
+            $dateFormatted = date("d/m/Y H:i:s", $timestamp);
+            
+            //replaces mensagem última movimentação
+            $replaces = [];
+            $replaces['login']  = $log->login;
+            $replaces['nome']  = $produto->nome;
+            $replaces['valor_antigo'] = $log->oldvalue;
+            $replaces['valor_novo']   = $log->newvalue;
+            $replaces['data']   = $dateFormatted;
+            
+            // replace the main section variables
+            $this->html->enableSection('main', $replaces);
+            
+            $panel->add($this->html);
+        }
         
         // wrap the page content using vertical box
         $vbox = new TVBox;
@@ -133,7 +136,7 @@ class FormCodeReader extends TPage
     {
         try
         {
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
 
             $barcode = ltrim($param['barcode'], '0');
             $barcode = substr($barcode, 0, -1);
@@ -166,7 +169,7 @@ class FormCodeReader extends TPage
     {
         try
         {
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
 
             $produto = Produto::find($param['qrcode']);
 
@@ -199,7 +202,7 @@ class FormCodeReader extends TPage
             $this->form->validate(); // form validation
 
             // open a transaction with database 'samples'
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
 
             $tipo_etiqueta = TipoEtiqueta::find(1);
 
@@ -258,7 +261,7 @@ class FormCodeReader extends TPage
             $this->form->validate(); // form validation
 
             // open a transaction with database 'samples'
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             $tipo_etiqueta = TipoEtiqueta::find(1);
 
@@ -292,6 +295,11 @@ class FormCodeReader extends TPage
             $object->store(); // stores the object
             
             TTransaction::close(); // close the transaction
+
+            if($object->quantidade < $object->estoque_minimo)
+            {
+                $this->enviaEmailAlerta($object);
+            }
             
             // shows the success message
             $posAction = new TAction([__CLASS__, 'onReload']);
@@ -307,6 +315,30 @@ class FormCodeReader extends TPage
             // undo all pending operations
             TTransaction::rollback();
         }
+    }
+
+    function enviaEmailAlerta($object)
+    {
+        // $email = 'bisolo.julia@gmail.com';
+        // $produto = $object->nome;
+    
+        // try {
+        //     $mail_template = file_get_contents('app/resources/page_sample.html');
+        //     $mail = new TMail;
+        //     $mail->setFrom('bisolo.julia@gmail.com', 'Baixo estoque');
+        //     $mail->setSubject('Baixo estoque');
+        //     $mail_template = str_replace('{NOME}', $produto, $mail_template);
+        //     $mail->setHtmlBody($mail_template);
+        //     $mail->addAddress($email, 'Júlia');
+        //     $mail->SetUseSmtp();
+        //     $mail->SMTPSecure = 'ssl';
+        //     $mail->SMTPAuth = true;
+        //     $mail->SetSmtpHost('smtp.gmail.com', '587');
+        //     $mail->SetSmtpUser('bisolo.julia@gmail.com', 'senhade');
+        //     $mail->send();
+        // } catch(Exception $e) {
+        //     new TMessage('error', 'Não foi possível enviar seu e-mail.');
+        // }
     }
 
     function decodificarBarcode($barcode)

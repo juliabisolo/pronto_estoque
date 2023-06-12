@@ -29,8 +29,8 @@ class ProdutoList extends TPage
         $id                   = new TEntry('id');
         $nome                 = new TEntry('nome');
         $descricao            = new TEntry('descricao');
-        $categoria_produto_id = new TDBCombo('categoria_produto_id', 'tem_estoque', 'CategoriaProduto', 'id', 'descricao', 'descricao');
-        $fornecedor_id = new TDBCombo('fornecedor_id', 'tem_estoque', 'Fornecedor', 'id', '{nome} ({cnpj})', 'nome');
+        $categoria_produto_id = new TDBCombo('categoria_produto_id', 'pronto_estoque', 'CategoriaProduto', 'id', 'descricao', 'descricao');
+        $fornecedor_id = new TDBCombo('fornecedor_id', 'pronto_estoque', 'Fornecedor', 'id', '{nome} ({cnpj})', 'nome');
 
         $id->setMask('9!');
         $categoria_produto_id->enableSearch();
@@ -152,9 +152,9 @@ class ProdutoList extends TPage
         $current_row = $this->datagrid->getRow($pos);
         $current_row->style = "background-color: #af4507; color:white; text-shadow:none";
         
-        TTransaction::open('tem_estoque');
+        TTransaction::open('pronto_estoque');
         $objProduto = new Produto($param['key']);
-        TTransaction::close('tem_estoque');
+        TTransaction::close('pronto_estoque');
 
         $objProduto->descricao = nl2br($objProduto->descricao);
 
@@ -257,7 +257,7 @@ class ProdutoList extends TPage
         try
         {
             // open a transaction with database 'pronto_estoque'
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             // creates a repository for Pessoa
             $repository = new TRepository('Produto');
@@ -337,7 +337,7 @@ class ProdutoList extends TPage
 
     public static function gerarEtiqueta($param)
     {
-        TTransaction::open('tem_estoque');
+        TTransaction::open('pronto_estoque');
 
         $produto = Produto::find($param['key']);
         $produtos[] = $produto;
@@ -379,7 +379,7 @@ class ProdutoList extends TPage
             // get the parameter $key
             $key=$param['key'];
             // open a transaction with database
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             // instantiates object
             $object = new Produto($key, FALSE);

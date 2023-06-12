@@ -169,7 +169,7 @@ class FornecedorList extends TPage
 
     public function desativa($param)
     {
-        TTransaction::open('tem_estoque');
+        TTransaction::open('pronto_estoque');
         $fornecedor = new Fornecedor($param['id']);
         $fornecedor->ativo = FALSE;
         $fornecedor->store();
@@ -188,7 +188,7 @@ class FornecedorList extends TPage
 
     public function ativa($param)
     {
-        TTransaction::open('tem_estoque');
+        TTransaction::open('pronto_estoque');
         $fornecedor = new Fornecedor($param['id']);
         $fornecedor->ativo = TRUE;
         $fornecedor->store();
@@ -272,7 +272,7 @@ class FornecedorList extends TPage
         try
         {
             // open a transaction with database 'agenda_julia'
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             // creates a repository for Pessoa
             $repository = new TRepository('Fornecedor');
@@ -368,7 +368,7 @@ class FornecedorList extends TPage
             // get the parameter $key
             $key=$param['key'];
             // open a transaction with database
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             // instantiates object
             $object = new Fornecedor($key, FALSE);

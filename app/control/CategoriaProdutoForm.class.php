@@ -17,7 +17,7 @@ class CategoriaProdutoForm extends TPage
     {
         parent::__construct();
 
-        $this->setDatabase('tem_estoque');
+        $this->setDatabase('pronto_estoque');
         $this->setActiveRecord('CategoriaProduto');
         
         // creates the form
@@ -67,7 +67,7 @@ class CategoriaProdutoForm extends TPage
         try
         {
             // open a transaction with database 'samples'
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             $this->form->validate(); // form validation
             

@@ -21,7 +21,7 @@ class EtiquetasPDF extends TPage
             $properties['barcodeHeight'] = 15;
             $properties['imageMargin']   = 0;
             
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
 
             $generator = new AdiantiBarcodeDocumentGenerator;
             $generator->setProperties($properties);
@@ -84,7 +84,7 @@ class EtiquetasPDF extends TPage
             $properties['barcodeHeight'] = 20;
             $properties['imageMargin']   = 0;
             
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
 
             $generator = new AdiantiBarcodeDocumentGenerator;
             $generator->setProperties($properties);

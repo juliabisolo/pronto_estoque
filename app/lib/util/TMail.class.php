@@ -31,6 +31,12 @@ class TMail
             );
             
         $this->pm-> CharSet = 'utf-8';
+
+        $this->pm->SMTPSecure  = 'tls';
+        // $this->pm->SMTPAutoTLS = false;
+        // $mail->SMTPSecure = 'tls';
+        $this->pm->SMTPAuth = true;
+
     }
     
     /**

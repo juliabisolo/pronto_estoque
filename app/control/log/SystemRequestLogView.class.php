@@ -18,7 +18,7 @@ class SystemRequestLogView extends TPage
         
         try
         {
-            TTransaction::open('log');
+            TTransaction::open('pronto_estoque');
             $log = SystemRequestLog::find($param['id']);
             TTransaction::close();
         }

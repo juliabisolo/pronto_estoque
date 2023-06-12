@@ -31,7 +31,7 @@ class SystemAccessNotificationLogService
         
         if ($open_transaction)
         {
-            TTransaction::open('log');
+            TTransaction::open('pronto_estoque');
         }
         
         $object = new SystemAccessNotificationLog;
@@ -62,7 +62,7 @@ class SystemAccessNotificationLogService
                 return;
             }
 
-            TTransaction::open('log');
+            TTransaction::open('pronto_estoque');
             $objects = SystemAccessNotificationLog::getObjects();
             TTransaction::close();
 
@@ -75,7 +75,7 @@ class SystemAccessNotificationLogService
             {
                 try
                 {
-                    TTransaction::open('log');
+                    TTransaction::open('pronto_estoque');
 
                     (new TEmailValidator())->validate("E-mail {$notification->email} FROM {$notification->login}", $notification->email);
 

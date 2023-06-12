@@ -21,7 +21,7 @@ class ProdutoReport extends TPage
     {
         parent::__construct();
 
-        $this->setDatabase('tem_estoque');
+        $this->setDatabase('pronto_estoque');
         $this->setActiveRecord('Produto');
         $this->setDefaultOrder('id', 'asc');
         
@@ -34,8 +34,8 @@ class ProdutoReport extends TPage
         $id                   = new TEntry('id');
         $nome                 = new TEntry('nome');
         $descricao            = new TEntry('descricao');
-        $categoria_produto_id = new TDBCombo('categoria_produto_id', 'tem_estoque', 'CategoriaProduto', 'id', 'descricao', 'descricao');
-        $fornecedor_id = new TDBCombo('fornecedor_id', 'tem_estoque', 'Fornecedor', 'id', '{nome} ({cnpj})', 'nome');
+        $categoria_produto_id = new TDBCombo('categoria_produto_id', 'pronto_estoque', 'CategoriaProduto', 'id', 'descricao', 'descricao');
+        $fornecedor_id = new TDBCombo('fornecedor_id', 'pronto_estoque', 'Fornecedor', 'id', '{nome} ({cnpj})', 'nome');
 
         $id->setMask('9!');
         $id->setSize('100');
@@ -254,7 +254,7 @@ class ProdutoReport extends TPage
         try
         {
             // open a transaction with database 'pronto_estoque'
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             // creates a repository for Pessoa
             $repository = new TRepository('Produto');
@@ -347,7 +347,7 @@ class ProdutoReport extends TPage
             }
         }
 
-        TTransaction::open('tem_estoque');
+        TTransaction::open('pronto_estoque');
 
         $produtos = array();
 

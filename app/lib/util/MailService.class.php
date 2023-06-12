@@ -20,10 +20,10 @@ class MailService
      */
     public static function send($tos, $subject, $body, $bodytype = 'text', $attachs = [])
     {
-        TTransaction::open('permission');
+        TTransaction::open('pronto_estoque');
         $preferences = SystemPreference::getAllPreferences();
         TTransaction::close();
-        
+        var_dump($preferences);
         $mail = new TMail;
         $mail->setFrom( trim($preferences['mail_from']), APPLICATION_NAME );
         

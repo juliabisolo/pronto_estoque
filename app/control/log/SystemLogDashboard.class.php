@@ -23,7 +23,7 @@ class SystemLogDashboard extends TPage
         {
             $html = new THtmlRenderer('app/resources/system_log_dashboard.html');
             
-            TTransaction::open('log');
+            TTransaction::open('pronto_estoque');
             $indicator1 = new THtmlRenderer('app/resources/info-box.html');
             $indicator2 = new THtmlRenderer('app/resources/info-box.html');
             $indicator3 = new THtmlRenderer('app/resources/info-box.html');

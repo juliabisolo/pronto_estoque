@@ -25,7 +25,7 @@ class SystemRequestLogService
         
         if ($open_transaction)
         {
-            TTransaction::open('log');
+            TTransaction::open('pronto_estoque');
         }
         
         $object = new SystemRequestLog;

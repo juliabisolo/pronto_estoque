@@ -32,7 +32,7 @@ class SystemChangeLogService
         
         if ($open_transaction)
         {
-            TTransaction::open('log');
+            TTransaction::open('pronto_estoque');
         }
         
         foreach ($lastState as $key => $value)

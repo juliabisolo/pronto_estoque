@@ -17,7 +17,7 @@ class ProdutoForm extends TPage
     {
         parent::__construct();
 
-        $this->setDatabase('tem_estoque');
+        $this->setDatabase('pronto_estoque');
         $this->setActiveRecord('Produto');
         
         // creates the form
@@ -37,10 +37,10 @@ class ProdutoForm extends TPage
         $estoque_maximo = new TEntry('estoque_maximo');
         $dt_cadastro = new TDateTime('dt_cadastro');
         $dt_atualizacao = new TDateTime('dt_atualizacao');
-        $categoria_produto_id = new TDBCombo('categoria_produto_id', 'tem_estoque', 'CategoriaProduto', 'id', 'descricao', 'descricao');
+        $categoria_produto_id = new TDBCombo('categoria_produto_id', 'pronto_estoque', 'CategoriaProduto', 'id', 'descricao', 'descricao');
         $filter = new TCriteria;
         $filter->add(new TFilter('ativo', 'is', true));
-        $fornecedor_id = new TDBCombo('fornecedor_id', 'tem_estoque', 'Fornecedor', 'id', '{nome} ({cnpj})', 'nome');
+        $fornecedor_id = new TDBCombo('fornecedor_id', 'pronto_estoque', 'Fornecedor', 'id', '{nome} ({cnpj})', 'nome');
 
         $categoria_produto_id->enableSearch();
         $fornecedor_id->enableSearch();
@@ -125,7 +125,7 @@ class ProdutoForm extends TPage
         try
         {
             // open a transaction with database 'samples'
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             $this->form->validate(); // form validation
             

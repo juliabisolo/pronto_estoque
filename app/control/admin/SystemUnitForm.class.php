@@ -23,7 +23,7 @@ class SystemUnitForm extends TStandardForm
         
         $ini  = AdiantiApplicationConfig::get();
         
-        $this->setDatabase('tem_estoque');              // defines the database
+        $this->setDatabase('pronto_estoque');              // defines the database
         $this->setActiveRecord('SystemUnit');     // defines the active record
         
         // creates the form

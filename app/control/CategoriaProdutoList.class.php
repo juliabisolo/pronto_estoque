@@ -157,7 +157,7 @@ class CategoriaProdutoList extends TPage
 
     public function desativa($param)
     {
-        TTransaction::open('tem_estoque');
+        TTransaction::open('pronto_estoque');
         $categoriaProduto = new CategoriaProduto($param['id']);
         $categoriaProduto->ativo = FALSE;
         $categoriaProduto->store();
@@ -176,7 +176,7 @@ class CategoriaProdutoList extends TPage
 
     public function ativa($param)
     {
-        TTransaction::open('tem_estoque');
+        TTransaction::open('pronto_estoque');
         $categoriaProduto = new CategoriaProduto($param['id']);
         $categoriaProduto->ativo = TRUE;
         $categoriaProduto->store();
@@ -252,7 +252,7 @@ class CategoriaProdutoList extends TPage
     {
         try
         {
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             // creates a repository for Pessoa
             $repository = new TRepository('CategoriaProduto');
@@ -344,7 +344,7 @@ class CategoriaProdutoList extends TPage
             // get the parameter $key
             $key=$param['key'];
             // open a transaction with database
-            TTransaction::open('tem_estoque');
+            TTransaction::open('pronto_estoque');
             
             // instantiates object
             $object = new CategoriaProduto($key, FALSE);

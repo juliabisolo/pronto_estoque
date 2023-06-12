@@ -72,7 +72,7 @@ class SystemRequestPasswordResetForm extends TPage
                 throw new Exception(_t('A new seed is required in the application.ini for security reasons'));
             }
             
-            TTransaction::open('permission');
+            TTransaction::open('pronto_estoque');
             
             $login = $param['login'];
             $user  = SystemUser::newFromLogin($login);
@@ -101,9 +101,9 @@ class SystemRequestPasswordResetForm extends TPage
                     $replaces = [];
                     $replaces['name'] = $user->name;
                     $replaces['link'] = $url;
+
                     $html = new THtmlRenderer('app/resources/system_reset_password.html');
                     $html->enableSection('main', $replaces);
-                    
                     MailService::send( $user->email, _t('Password reset'), $html->getContents(), 'html' );
                     new TMessage('info', _t('Message sent successfully'));
                 }
